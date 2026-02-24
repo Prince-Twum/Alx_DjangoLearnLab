@@ -1,3 +1,12 @@
 from django.contrib import admin
+from .models import Book
 
+# Customize admin interface for Book
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'publication_year')  # Columns to display
+    list_filter = ('publication_year', 'author')            # Filters in sidebar
+    search_fields = ('title', 'author')                     # Search bar fields
+
+# Register the model with the admin site
+admin.site.register(Book, BookAdmin)
 # Register your models here.
