@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test
-
+from django.contrib.auth.decorators import permission_required
 
 # Role check functions
 def is_admin(user):
@@ -31,3 +31,15 @@ def librarian_view(request):
 @user_passes_test(is_member)
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
+
+@permission_required('relationship_app.can_add_book')
+def add_book(request):
+    return render(request, "relationship_app/add_book.html")
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book(request):
+    return render(request, "relationship_app/delete_book.html")
+
+@permission_required('relationship_app.can_delete_book')
+def delete_book(request):
+    return render(request, "relationship_app/delete_book.html")
