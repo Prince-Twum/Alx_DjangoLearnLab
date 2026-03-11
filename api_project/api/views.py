@@ -6,4 +6,12 @@ from .serializers import BookSerializer
 class BookList(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-# Create your views here.
+
+
+# Add the new ModelViewSet for full CRUD
+class BookViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing book instances.
+    """
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
